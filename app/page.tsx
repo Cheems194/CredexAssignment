@@ -1,102 +1,96 @@
-import Image from "next/image";
+'use client';
+
+import Chat from '@/components/Chat';
+import { motion } from 'framer-motion';
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="relative min-h-screen w-screen overflow-x-hidden bg-[#0f0c2c] text-white">
+      <div className="pointer-events-none absolute -top-40 -left-40 h-[680px] w-[680px] rounded-[30%] bg-[#A855F7] opacity-40 blur-[100px]"></div>
+      <div className="pointer-events-none absolute -bottom-48 right-12 h-[600px] w-[600px] rounded-[30%] bg-[#10B981] opacity-40 blur-[100px]"></div>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      <header className="container mx-auto px-6 md:px-10 lg:px-20 py-10">
+        <h1 className="text-4xl md:text-6xl font-extrabold leading-tight">
+          The easiest way to sell <br />
+          your software licenses.
+        </h1>
+        <p className="mt-6 max-w-2xl text-xl text-[#94a1b2]">
+          Get instant quotes, sell with ease, and turn your unused software licenses into cash.
+        </p>
+        <motion.button
+          className="mt-10 rounded-full bg-[#a855f7] px-10 py-4 font-semibold text-white shadow-lg transition hover:bg-[#9333ea]"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+        >
+          Sell My Licenses
+        </motion.button>
+        <Chat></Chat>
+      </header>
+
+      <section className="container mx-auto px-6 md:px-10 lg:px-20 py-20">
+        <div className="grid gap-12 md:grid-cols-3">
+          {[
+            {
+              title: 'Fast Quotes',
+              description:
+                'Get an instant price quote for your unused licenses without hassle.',
+            },
+            {
+              title: 'Secure Transactions',
+              description:
+                'We ensure safe and encrypted payments directly to your account.',
+            },
+            {
+              title: 'Hassle-Free',
+              description:
+                'No complicated paperwork or long wait times. Just sell and earn.',
+            },
+          ].map(({ title, description }) => (
+            <motion.div
+              key={title}
+              className="rounded-2xl border border-[#292450] bg-[#1a133b] p-8 text-center shadow-lg"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h3 className="mb-4 text-2xl font-bold">{title}</h3>
+              <p className="text-[#94a1b2]">{description}</p>
+            </motion.div>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      </section>
+
+      <section className="container mx-auto px-6 md:px-10 lg:px-20 py-20">
+        <h2 className="mb-12 text-center text-3xl font-bold">What our users say</h2>
+        <div className="grid gap-12 md:grid-cols-2">
+          {[
+            {
+              name: 'Alice Johnson',
+              quote:
+                'This platform made selling my unused licenses effortless and profitable!',
+            },
+            {
+              name: 'Michael Smith',
+              quote:
+                'The UI is beautiful and the process is fast. Highly recommend!',
+            },
+          ].map(({ name, quote }) => (
+            <motion.blockquote
+              key={name}
+              className="rounded-xl bg-[#2b2350] p-8 text-lg italic shadow-md"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              “{quote}”
+              <footer className="mt-4 text-right font-semibold">— {name}</footer>
+            </motion.blockquote>
+          ))}
+        </div>
+      </section>
+
+      <footer className="container mx-auto px-6 md:px-10 lg:px-20 py-10 text-center text-[#94a1b2]">
+        © 2025 SoftwareResale Inc. All rights reserved.
       </footer>
     </div>
   );
